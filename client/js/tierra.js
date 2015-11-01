@@ -435,9 +435,15 @@ function cameraPhysics() {
     z = camera.position.z;
   var radius = 100;
   if (Mouse.isPressed(Mouse.rightClick)) {
-    cameraVector.x = cameraVector.x * Math.cos((mouseMove.x * -1) / 100) - cameraVector.y * Math.sin((mouseMove.x * -1) / 100);
-    cameraVector.y = cameraVector.y * Math.cos((mouseMove.x * -1) / 100) + cameraVector.x * Math.sin((mouseMove.x * -1) / 100);
-    cameraVector.z = cameraVector.z * Math.cos((mouseMove.y * -1) / 100) + cameraVector.x * Math.sin((mouseMove.y * -1) / 100);
+    var preCam = {};
+    
+    preCam.x = cameraVector.x * Math.cos((mouseMove.x * -1) / 100) - cameraVector.y * Math.sin((mouseMove.x * -1) / 100);
+    preCam.y = cameraVector.y * Math.cos((mouseMove.x * -1) / 100) + cameraVector.x * Math.sin((mouseMove.x * -1) / 100);
+    preCam.z = cameraVector.z * Math.cos((mouseMove.y * -1) / 100) + cameraVector.x * Math.sin((mouseMove.y * -1) / 100);
+
+    cameraVector.x = preCam.x;
+    cameraVector.y = preCam.y;
+    cameraVector.z = preCam.z;
   }
 
   // we can easily notice shadows if we dynamically move lights during the game
