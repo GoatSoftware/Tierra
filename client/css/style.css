@@ -1,0 +1,16 @@
+body {
+  background-color: green;
+}
+.welcomeTitle {
+  font-size: 24px;
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+#gameCanvas {
+  background-color: black;
+  width: 640px;
+  height: 360px;
+  margin: auto;
+  align: center;
+}
