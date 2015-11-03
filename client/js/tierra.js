@@ -179,6 +179,11 @@ function createScene() {
   ball.receiveShadow = true;
   ball.castShadow = true;
 
+
+
+  /**
+   * PADDLE1
+   */
   // // set up the paddle vars
   paddleWidth = 10;
   paddleHeight = 30;
@@ -210,6 +215,43 @@ function createScene() {
   paddle1.receiveShadow = true;
   paddle1.castShadow = true;
 
+  /**
+   * END PADDLE1
+   */
+
+   /**
+    * TEST PADDLE1
+    */
+    // prepare loader and load the model
+  THREE.ImageUtils.crossOrigin = "anonymous";
+  var oLoader = new THREE.OBJMTLLoader();
+  oLoader.load('/resources/models/Female Base Model/woman_model1938.obj', '/resources/models/Female Base Model/woman_model1938.mtl', function(object, materials) {
+
+  // var material = new THREE.MeshFaceMaterial(materials);
+  var material2 = new THREE.MeshLambertMaterial({ color: 0xa65e00 });
+
+  object.traverse( function(child) {
+    if (child instanceof THREE.Mesh) {
+
+      // apply custom material
+      child.material = material2;
+
+      // enable casting shadows
+      child.castShadow = true;
+      child.receiveShadow = true;
+    }
+  });
+
+    object.position.x = 0;
+    object.position.y = 0;
+    object.position.z = 0;
+    object.scale.set(1, 1, 1);
+    scene.add(object);
+  });
+
+  /**
+   * END TEST PADDLE1
+   */
   paddle2 = new THREE.Mesh(
 
     new THREE.CubeGeometry(
@@ -436,7 +478,7 @@ function cameraPhysics() {
   var radius = 100;
   if (Mouse.isPressed(Mouse.rightClick)) {
     var preCam = {};
-    
+
     preCam.x = cameraVector.x * Math.cos((mouseMove.x * -1) / 100) - cameraVector.y * Math.sin((mouseMove.x * -1) / 100);
     preCam.y = cameraVector.y * Math.cos((mouseMove.x * -1) / 100) + cameraVector.x * Math.sin((mouseMove.x * -1) / 100);
     preCam.z = cameraVector.z * Math.cos((mouseMove.y * -1) / 100) + cameraVector.x * Math.sin((mouseMove.y * -1) / 100);
@@ -450,8 +492,8 @@ function cameraPhysics() {
   spotLight.position.x = paddle1.position.x * 2;
   spotLight.position.y = paddle1.position.y * 2;
 
-  mouseWheel = Mouse.scrolled()
-  if (mouseWheel != 0) {
+  mouseWheel = Mouse.scrolled();
+  if (mouseWheel !== 0) {
     cameraVector.x = cameraVector.x * (1+mouseWheel / 400);
     cameraVector.y = cameraVector.y * (1+mouseWheel / 400);
     cameraVector.z = cameraVector.z * (1+mouseWheel / 400);
