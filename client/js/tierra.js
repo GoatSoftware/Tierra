@@ -224,8 +224,8 @@ function createScene() {
     */
     // prepare loader and load the model
   THREE.ImageUtils.crossOrigin = "anonymous";
-  var oLoader = new THREE.OBJMTLLoader();
-  oLoader.load('/resources/models/Female Base Model/woman_model1938.obj', '/resources/models/Female Base Model/woman_model1938.mtl', function(object, materials) {
+  var oLoader = new THREE.OBJLoader();
+  oLoader.load('/resources/models/scarab.obj', function(object, materials) {
 
   // var material = new THREE.MeshFaceMaterial(materials);
   var material2 = new THREE.MeshLambertMaterial({ color: 0xa65e00 });
