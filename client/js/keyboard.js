@@ -12,6 +12,7 @@ var Key = {
   W: 87,
   D: 68,
   S: 83,
+  F: 70,
   SPACE: 32,
 
   isDown: function(keyCode) {
@@ -51,7 +52,7 @@ var Mouse = {
     return wheel;
   },
 
-  movement() {
+  movement: function() {
     var deltaMove = {
       x: this._moved.x,
       y: this._moved.y
@@ -77,12 +78,12 @@ var Mouse = {
     window.removeEventListener('mousemove', Mouse.onMouseMove);
   },
 
-  onMouseMove(event) {
+  onMouseMove: function(event) {
     Mouse._moved.x += event.movementX;
     Mouse._moved.y += event.movementY;
   },
 
-  onMouseWheel(event) {
+  onMouseWheel: function(event) {
     this._wheel += event.wheelDelta;
   }
 };
