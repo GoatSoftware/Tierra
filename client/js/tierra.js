@@ -397,9 +397,9 @@ function playerPaddleMovement() {
   }
 
 
-  paddle1.position.x += delta.x;
-  paddle1.position.y += delta.y;
-  paddle1.position.z += delta.z;
+  paddle1.position.x += delta.x * 2;
+  paddle1.position.y += delta.y * 2;
+  paddle1.position.z += delta.z * 2;
 
   return delta;
 }
