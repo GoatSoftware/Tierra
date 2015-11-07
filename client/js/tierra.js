@@ -23,7 +23,7 @@ var paddle1DirZ = 0,
   paddleSpeed = 3;
 
 // ball variables
-var ball, paddle1, paddle2;
+var ball, paddle1, paddle2, obstacle1, obstacle2;
 var ballDirX = 1,
   ballDirY = 1,
   ballSpeed = 2;
@@ -64,7 +64,9 @@ function createScene() {
 
   // create a WebGL renderer, camera
   // and a scene
-  renderer = new THREE.WebGLRenderer({antialias: true});
+  renderer = new THREE.WebGLRenderer({
+    antialias: true
+  });
   camera =
     new THREE.PerspectiveCamera(
       VIEW_ANGLE,
@@ -113,6 +115,10 @@ function createScene() {
     new THREE.MeshLambertMaterial({
       color: 0x888888
     });
+  var obstacleMaterial =
+    new THREE.MeshLambertMaterial({
+      color: 0x00FF00
+    });
 
 
   // // set up the sphere vars
@@ -147,6 +153,42 @@ function createScene() {
   scene.add(paddle1);
   paddle1.receiveShadow = true;
   paddle1.castShadow = true;
+
+  obstacle1 = new THREE.Mesh(
+
+    new THREE.CubeGeometry(
+      100,
+      100,
+      100,
+      1),
+
+    obstacleMaterial);
+
+  // // add the sphere to the scene
+  scene.add(obstacle1);
+  obstacle1.position.x = -200;
+  obstacle1.position.y = 0;
+  obstacle1.position.z = -100;
+  obstacle1.receiveShadow = true;
+  obstacle1.castShadow = true;
+
+  obstacle2 = new THREE.Mesh(
+
+    new THREE.CubeGeometry(
+      100,
+      100,
+      100,
+      1),
+
+    obstacleMaterial);
+
+  // // add the sphere to the scene
+  scene.add(obstacle2);
+  obstacle2.position.x = 200;
+  obstacle2.position.y = 0;
+  obstacle2.position.z = 100;
+  obstacle2.receiveShadow = true;
+  obstacle2.castShadow = true;
 
   /**
    * TEST MODEL OBJ
@@ -274,7 +316,7 @@ function cameraPhysics(deltaMove) {
   camera.position.z += deltaMove.z;
   control.target.set(paddle1.position.x, paddle1.position.y, paddle1.position.z);
   control.update();
-  if(Key.isDown(Key.F)) {
+  if (Key.isDown(Key.F)) {
     camera.rotation.z += Math.PI / 4;
   }
 }
@@ -317,34 +359,37 @@ function playerPaddleMovement() {
     xMove += -1;
   }
   var angle = 0;
-  if(xMove !== 0 || yMove !== 0 || zMove !== 0) {
-    if(xMove == 1) {
-      if(zMove == 1) {
+  if (xMove !== 0 || yMove !== 0 || zMove !== 0) {
+    if (xMove == 1) {
+      if (zMove == 1) {
         angle = 45;
-      } else if(zMove == -1) {
+      } else if (zMove == -1) {
         angle = 315;
       } else {
         angle = 0;
       }
     } else if (xMove == -1) {
-        if(zMove == 1) {
-          angle = 135;
-        } else if(zMove == -1) {
-          angle = 225;
-        } else {
-          angle = 180;
-        }
+      if (zMove == 1) {
+        angle = 135;
+      } else if (zMove == -1) {
+        angle = 225;
+      } else {
+        angle = 180;
+      }
     } else {
-        if(zMove == 1) {
-          angle = 90;
-        } else if(zMove == -1) {
-          angle = 270;
-        } else {
-          angle = -1;
-        }
+      if (zMove == 1) {
+        angle = 90;
+      } else if (zMove == -1) {
+        angle = 270;
+      } else {
+        angle = -1;
+      }
     }
-    if(angle != -1) {
-      direction.rotateAround({x:0,y:0}, angle * Math.PI / 180);
+    if (angle != -1) {
+      direction.rotateAround({
+        x: 0,
+        y: 0
+      }, angle * Math.PI / 180);
       delta.x = direction.x;
       delta.y = yMove;
       delta.z = direction.y;
