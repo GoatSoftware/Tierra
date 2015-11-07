@@ -322,7 +322,7 @@ function playerPaddleMovement() {
       if(zMove == 1) {
         angle = 45;
       } else if(zMove == -1) {
-        angle = 415;
+        angle = 315;
       } else {
         angle = 0;
       }
