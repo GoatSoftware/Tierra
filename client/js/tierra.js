@@ -302,19 +302,19 @@ function playerPaddleMovement() {
 
   if (Key.isDown(Key.A)) {
     // move left
-    zMove = -1;
+    zMove += -1;
   }
   if (Key.isDown(Key.D)) {
     // move right
-    zMove = 1;
+    zMove += 1;
   }
   if (Key.isDown(Key.W)) {
     // move front
-    xMove = 1;
+    xMove += 1;
   }
   if (Key.isDown(Key.S)) {
     // move back
-    xMove = -1;
+    xMove += -1;
   }
   var angle = 0;
   if(xMove !== 0 || yMove !== 0 || zMove !== 0) {
