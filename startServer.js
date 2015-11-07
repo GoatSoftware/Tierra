@@ -47,9 +47,6 @@ server.listen(80);
 // use socket.io
 var io = require('socket.io').listen(server);
 
-//turn off debug
-io.set('log level', 1);
-
 // define interactions with client
 io.sockets.on('connection', function(socket) {
   //send data to client
