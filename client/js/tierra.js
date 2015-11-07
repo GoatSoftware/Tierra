@@ -64,7 +64,7 @@ function createScene() {
 
   // create a WebGL renderer, camera
   // and a scene
-  renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer({antialias: true});
   camera =
     new THREE.PerspectiveCamera(
       VIEW_ANGLE,
