@@ -29,8 +29,9 @@ var ballDirX = 1,
   ballSpeed = 2;
 
 // game-related variables
-var score1 = 0,
-  score2 = 0;
+var ySpeed = 0;
+var jumping = false;
+var gravity = -9.8;
 // you can change this to any positive whole number
 var maxScore = 7;
 
@@ -295,7 +296,7 @@ function createScene() {
 
 function draw() {
   var deltaMove = {};
-  //var dt = clock.getDelta();
+  var dt = clock.getDelta();
   //control.update(dt);
   // draw THREE.JS scene
   renderer.render(scene, camera);
@@ -304,7 +305,7 @@ function draw() {
 
   ballPhysics();
   paddlePhysics();
-  deltaMove = playerPaddleMovement();
+  deltaMove = playerPaddleMovement(dt);
   cameraPhysics(deltaMove);
   opponentPaddleMovement();
 }
@@ -332,7 +333,7 @@ function opponentPaddleMovement() {
 
 
 // Handles player's paddle movement
-function playerPaddleMovement() {
+function playerPaddleMovement(time) {
 
   var direction = new THREE.Vector2(paddle1.position.x - camera.position.x, paddle1.position.z - camera.position.z);
   direction.normalize();
@@ -357,6 +358,12 @@ function playerPaddleMovement() {
   if (Key.isDown(Key.S)) {
     // move back
     xMove += -1;
+  }
+  if (Key.isDown(Key.SPACE)) {
+    if (!jumping) {
+      jumping = true;
+      ySpeed = 40;
+    }
   }
   var angle = 0;
   if (xMove !== 0 || yMove !== 0 || zMove !== 0) {
@@ -391,15 +398,28 @@ function playerPaddleMovement() {
         y: 0
       }, angle * Math.PI / 180);
       delta.x = direction.x;
-      delta.y = yMove;
       delta.z = direction.y;
     }
   }
 
+  if (!jumping) {
+    delta.x = delta.x * 2;
+    delta.z = delta.z * 2;
+  } else {
+    //delta.y = ySpeed + 1/2 * gravity * time * time;
+    //ySpeed = gravity * time;
+    delta.y = ySpeed/10;
+    ySpeed--;
+  }
 
-  paddle1.position.x += delta.x * 2;
-  paddle1.position.y += delta.y * 2;
-  paddle1.position.z += delta.z * 2;
+  //Collision y
+  if(paddle1.position.y + delta.y < 5) {
+    jumping = false;
+    delta.y = 0;
+  }
+  paddle1.position.x += delta.x;
+  paddle1.position.y += delta.y;
+  paddle1.position.z += delta.z;
 
   return delta;
 }
