@@ -8,36 +8,49 @@ var aux = "";
 server = http.createServer(function(req, res) {
   // your normal server code
   var path = url.parse(req.url).pathname;
-  switch (path) {
-    case '/':
-      aux = __dirname  + '/client/index.html';
-      fs.readFile(__dirname + '/client/index.html', function(err, data) {
-        if (err) {
-          return send404(res);
-        }
-        res.writeHead(200, {
-          'Content-Type': 'text/html'
-        });
-        res.write(data, 'utf8');
-        res.end();
+  if (path.startsWith('/client')) {
+    fs.readFile(__dirname + path, function(err, data) {
+      if (err) {
+        return send404(res);
+      }
+      res.writeHead(200, {
+        'Content-Type': 'text/html'
       });
-      break;
-    case '/credits.html':
-      aux = 'credits';
-      fs.readFile(__dirname + '/client/' + path, function(err, data) {
-        if (err) {
-          return send404(res);
-        }
-        res.writeHead(200, {
-          'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'
+      res.write(data, 'utf8');
+      res.end();
+    });
+  } else {
+    switch (path) {
+      case '/':
+        aux = __dirname + '/client/index.html';
+        fs.readFile(__dirname + '/client/index.html', function(err, data) {
+          if (err) {
+            return send404(res);
+          }
+          res.writeHead(200, {
+            'Content-Type': 'text/html'
+          });
+          res.write(data, 'utf8');
+          res.end();
         });
-        res.write(data, 'utf8');
-        res.end();
-      });
-      break;
-    default:
-      aux = 'Una mierda';
-      send404(res);
+        break;
+      case '/credits.html':
+        aux = 'credits';
+        fs.readFile(__dirname + '/client/' + path, function(err, data) {
+          if (err) {
+            return send404(res);
+          }
+          res.writeHead(200, {
+            'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'
+          });
+          res.write(data, 'utf8');
+          res.end();
+        });
+        break;
+      default:
+        aux = 'Una mierda';
+        send404(res);
+    }
   }
 });
 
