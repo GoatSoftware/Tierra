@@ -3,11 +3,14 @@ var url = require('url');
 var fs = require('fs');
 var server;
 
+var aux = "";
+
 server = http.createServer(function(req, res) {
   // your normal server code
   var path = url.parse(req.url).pathname;
   switch (path) {
     case '/':
+      aux = __dirname  + 'client/index.html';
       fs.readFile(__dirname + 'client/index.html', function(err, data) {
         if (err) {
           return send404(res);
@@ -20,6 +23,7 @@ server = http.createServer(function(req, res) {
       });
       break;
     case '/credits.html':
+      aux = 'credits';
       fs.readFile(__dirname + 'client/' + path, function(err, data) {
         if (err) {
           return send404(res);
@@ -32,13 +36,14 @@ server = http.createServer(function(req, res) {
       });
       break;
     default:
+      aux = 'Una mierda';
       send404(res);
   }
 });
 
 var send404 = function(res) {
   res.writeHead(404);
-  res.write('404');
+  res.write('404 - ' + aux);
   res.end();
 };
 
