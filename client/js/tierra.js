@@ -1,42 +1,13 @@
 // scene object variables
 var renderer, scene, camera, pointLight, spotLight, control;
 
-var cameraVector = {
-  x: -100,
-  y: 0,
-  z: 50,
-  angle: {
-    x: 0,
-    y: -60,
-    z: -90
-  }
-};
-
-// field variables
-var fieldWidth = 1000,
-  fieldHeight = 1000;
-
-// paddle variables
-var paddleWidth, paddleHeight, paddleDepth, paddleQuality;
-var paddle1DirZ = 0,
-  paddle2DirY = 0,
-  paddleSpeed = 3;
-
 // ball variables
-var ball, paddle1, paddle2, obstacle1, obstacle2;
-var ballDirX = 1,
-  ballDirY = 1,
-  ballSpeed = 2;
+var paddle1, paddle2, obstacle1, obstacle2;
+var mainCharacter;
 
 // game-related variables
 var ySpeed = 0;
 var jumping = false;
-var gravity = -9.8;
-// you can change this to any positive whole number
-var maxScore = 7;
-
-// set opponent reflexes (0 - easiest, 1 - hardest)
-var difficulty = 0.2;
 
 // ------------------------------------- //
 // ------- GAME FUNCTIONS -------------- //
@@ -125,21 +96,13 @@ function createScene() {
   // // set up the sphere vars
   // lower 'segment' and 'ring' values will increase performance
   var radius = 5,
-    segments = 6,
-    rings = 6;
+    segments = 50,
+    rings = 50;
 
   // // create the sphere's material
   var sphereMaterial = new THREE.MeshLambertMaterial({
     color: 0xD43001
   });
-
-  // Create a ball with sphere geometry
-
-  // // set up the paddle vars
-  paddleWidth = 10;
-  paddleHeight = 30;
-  paddleDepth = 10;
-  paddleQuality = 1;
 
   paddle1 = new THREE.Mesh(
 
@@ -154,6 +117,9 @@ function createScene() {
   scene.add(paddle1);
   paddle1.receiveShadow = true;
   paddle1.castShadow = true;
+
+  mainCharacter = new TIERRA.PlayingCharacter();
+  scene.add(mainCharacter.getModel());
 
   obstacle1 = new THREE.Mesh(
 
@@ -191,38 +157,6 @@ function createScene() {
   obstacle2.receiveShadow = true;
   obstacle2.castShadow = true;
 
-  /**
-   * TEST MODEL OBJ
-   */
-  // prepare loader and load the model
-  // THREE.ImageUtils.crossOrigin = "anonymous";
-  // var oLoader = new THREE.OBJLoader();
-  // oLoader.load('/resources/models/scarab.obj', function(object, materials) {
-  //
-  //   // var material = new THREE.MeshFaceMaterial(materials);
-  //   var material2 = new THREE.MeshLambertMaterial({
-  //     color: 0xa65e00
-  //   });
-  //
-  //   object.traverse(function(child) {
-  //     if (child instanceof THREE.Mesh) {
-  //
-  //       // apply custom material
-  //       child.material = material2;
-  //
-  //       // enable casting shadows
-  //       child.castShadow = true;
-  //       child.receiveShadow = true;
-  //     }
-  //   });
-  //
-  //   object.position.x = 0;
-  //   object.position.y = 0;
-  //   object.position.z = 0;
-  //   object.scale.set(1, 1, 1);
-  //   scene.add(object);
-  // });
-
   paddle2 = new THREE.Mesh(
 
     new THREE.SphereGeometry(
@@ -241,12 +175,12 @@ function createScene() {
   paddle2.castShadow = true;
 
   // set paddles on each side of the table
-  paddle1.position.x = -fieldWidth / 2 + paddleWidth;
-  paddle2.position.x = fieldWidth / 2 - paddleWidth;
+  paddle1.position.x = -500;
+  paddle1.position.y = 0;
 
   // lift paddles over playing surface
-  paddle1.position.y = paddleDepth;
-  paddle2.position.y = paddleDepth;
+  paddle2.position.x = 500;
+  paddle2.position.y = 0;
 
 
   // finally we finish by adding a ground plane
@@ -257,13 +191,12 @@ function createScene() {
       1000,
       3,
       1000,
-      1,
-      1,
       1),
 
     groundMaterial);
   // set ground to arbitrary z position to best show off shadowing
   ground.receiveShadow = true;
+  ground.position.y = -7;
   scene.add(ground);
 
   // // create a point light
@@ -303,11 +236,8 @@ function draw() {
   // loop draw function call
   requestAnimationFrame(draw);
 
-  ballPhysics();
-  paddlePhysics();
   deltaMove = playerPaddleMovement(dt);
   cameraPhysics(deltaMove);
-  opponentPaddleMovement();
 }
 
 // Handles camera and lighting logic
@@ -321,16 +251,6 @@ function cameraPhysics(deltaMove) {
     camera.rotation.z += Math.PI / 4;
   }
 }
-
-function ballPhysics() {
-
-}
-
-// Handles CPU paddle movement and logic
-function opponentPaddleMovement() {
-
-}
-
 
 // Handles player's paddle movement
 function playerPaddleMovement(time) {
@@ -422,13 +342,4 @@ function playerPaddleMovement(time) {
   paddle1.position.z += delta.z;
 
   return delta;
-}
-
-// Handles paddle collision logic
-function paddlePhysics() {
-
-}
-
-function resetBall(loser) {
-
 }

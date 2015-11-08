@@ -1,7 +1,7 @@
 window.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
 window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
 window.addEventListener('mousedown', function(event) { Mouse.onMouseDown(event); }, false);
-window.addEventListener('mouseup', function(event) { Mouse.onMouseUp(event) }, false);
+window.addEventListener('mouseup', function(event) { Mouse.onMouseUp(event); }, false);
 window.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
 window.addEventListener("mousewheel", function(event) { Mouse.onMouseWheel(event); }, false);
 
