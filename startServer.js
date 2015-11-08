@@ -9,7 +9,7 @@ server = http.createServer(function(req, res) {
   switch (path) {
     case '/':
       fs.readFile(__dirname + 'client/index.html', function(err, data) {
-        if(err) {
+        if (err) {
           return send404(res);
         }
         res.writeHead(200, {
@@ -42,22 +42,22 @@ var send404 = function(res) {
   res.end();
 };
 
-server.listen(80);
-// 
-// // use socket.io
-// var io = require('socket.io').listen(server);
-//
-// // define interactions with client
-// io.sockets.on('connection', function(socket) {
-//   //send data to client
-//   setInterval(function() {
-//     socket.emit('date', {
-//       'date': new Date()
-//     });
-//   }, 1000);
-//
-//   //recieve client data
-//   socket.on('client_data', function(data) {
-//     process.stdout.write(data.letter);
-//   });
-// });
+server.listen(5454);
+
+// use socket.io
+var io = require('socket.io').listen(server);
+
+// define interactions with client
+io.sockets.on('connection', function(socket) {
+  //send data to client
+  setInterval(function() {
+    socket.emit('date', {
+      'date': new Date()
+    });
+  }, 1000);
+
+  //recieve client data
+  socket.on('client_data', function(data) {
+    process.stdout.write(data.letter);
+  });
+});
