@@ -8,7 +8,7 @@ var aux = "";
 server = http.createServer(function(req, res) {
   // your normal server code
   var path = url.parse(req.url).pathname;
-  if (path.startsWith('/client')) {
+  if (path.lastIndexOf('/client') === 0) {
     fs.readFile(__dirname + path, function(err, data) {
       if (err) {
         return send404(res);
