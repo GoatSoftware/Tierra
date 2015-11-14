@@ -1,4 +1,4 @@
-TIERRA.PlayingCharacter = function() {
+TIERRA.PlayingCharacter = function(initPos) {
   var self = this;
 
   //Expose attributes
@@ -26,11 +26,11 @@ TIERRA.PlayingCharacter = function() {
     jumping = false;
     speed = 1;
     position = {
-      x: 0,
-      y: 0,
-      z: 0
+      x: initPos.x || 0,
+      y: initPos.y || 0,
+      z: initPos.z || 0
     };
-    resource = new TIERRA.resources.Resource('playingCharacter');
+    resource = new TIERRA.resources.Resource('playingCharacter', position);
   }
 
   function getModel() {
@@ -44,54 +44,45 @@ TIERRA.PlayingCharacter = function() {
   function move(deltaTime, heading) {
     heading = new THREE.Vector2(heading.x, heading.z);
     var direction = TIERRA.resources.Input.getInput();
-    var deltaMove = {x: 0, y: 0, z: 0};
-    var angle = 0;
-    var code = direction.x.toString() + direction.z.toString();
-    switch (code) {
-      case "00":
-        angle = 0;
-        break;
-      case "10":
-        angle = 0;
-        break;
-      case "11":
-        angle = 45;
-        break;
-      case "01":
-        angle = 90;
-        break;
-      case "-11":
-        angle = 135;
-        break;
-      case "-10":
-        angle = 180;
-        break;
-      case "-1-1":
-        angle = 225;
-        break;
-      case "0-1":
-        angle = 270;
-        break;
-      case "1-1":
-        angle = 315;
-        break;
+    var deltaMove = {
+      x: 0,
+      y: 0,
+      z: 0
+    };
+    var angle = Math.atan2(direction.z, direction.x); //atan z and x instead of x and z to rotate over the y axis
+    if (angle < Math.PI) {
+      angle += Math.PI * 2;
     }
-    if(code != "00") {
+    if (direction.x !== 0 || direction.z !== 0) {
       movement = deltaTime * speed * 100;
       heading.rotateAround({
         x: 0,
         y: 0
-      }, angle * Math.PI / 180);
+      }, angle);
       heading.normalize();
       deltaMove.x = heading.x;
       deltaMove.z = heading.y;
       deltaMove.x *= movement;
       deltaMove.z *= movement;
-      deltaMove = {x: deltaMove.x, y: 0, z:deltaMove.z};
-      setPosition({x: position.x + deltaMove.x, y: 0, z: position.z + deltaMove.z});
+      deltaMove = {
+        x: deltaMove.x,
+        y: 0,
+        z: deltaMove.z
+      };
+      setPosition({
+        x: position.x + deltaMove.x,
+        y: 0,
+        z: position.z + deltaMove.z
+      });
+    }
+    if (jumping === false) {
+      if (direction.y !== 0) {
+        //TODO Start jump
+      }
+    } else {
+      //TODO Calculate next y position
     }
     return deltaMove;
-    // return new THREE.Vector3(x, y, z);
   }
 
   function getPosition() {
