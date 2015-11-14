@@ -221,7 +221,7 @@ function createScene() {
   scene.add(spotLight);
 
   clock = new THREE.Clock();
-  camera.position.set(paddle1.position.x - 100, paddle1.position.y + 25, paddle1.position.z);
+  camera.position.set(mainCharacter.getPosition().x - 100, mainCharacter.getPosition().y + 25, mainCharacter.getPosition().z);
 
   // MAGIC SHADOW CREATOR DELUXE EDITION with Lights PackTM DLC
   renderer.shadowMap = true;
@@ -230,61 +230,48 @@ function createScene() {
 function draw() {
   var deltaMove = {};
   var dt = clock.getDelta();
+  var heading = {
+    x: mainCharacter.getPosition().x - camera.position.x,
+    y: mainCharacter.getPosition().y - camera.position.y,
+    z: mainCharacter.getPosition().z - camera.position.z
+  };
+  deltaMove = mainCharacter.move(dt, heading);
+  cameraPhysics(deltaMove);
+
   //control.update(dt);
   // draw THREE.JS scene
-  renderer.render(scene, camera);
   // loop draw function call
-  requestAnimationFrame(draw);
+  // deltaMove = playerPaddleMovement(dt);
+  renderer.render(scene, camera);
 
-  deltaMove = playerPaddleMovement(dt);
-  cameraPhysics(deltaMove);
+  requestAnimationFrame(draw);
 }
 
 // Handles camera and lighting logic
 function cameraPhysics(deltaMove) {
+  control.target.set(mainCharacter.getPosition().x, mainCharacter.getPosition().y, mainCharacter.getPosition().z);
   camera.position.x += deltaMove.x;
   camera.position.y += deltaMove.y;
   camera.position.z += deltaMove.z;
-  control.target.set(paddle1.position.x, paddle1.position.y, paddle1.position.z);
   control.update();
-  if (Key.isDown(Key.F)) {
-    camera.rotation.z += Math.PI / 4;
-  }
 }
 
 // Handles player's paddle movement
 function playerPaddleMovement(time) {
 
-  var direction = new THREE.Vector2(paddle1.position.x - camera.position.x, paddle1.position.z - camera.position.z);
-  direction.normalize();
+  var heading = new THREE.Vector2(mainCharacter.getPosition().x, mainCharacter.getPosition().y, mainCharacter.getPosition().z);
+  heading.normalize();
   var xMove = 0;
   var yMove = 0;
   var zMove = 0;
 
   var delta = new THREE.Vector3(0, 0, 0);
 
-  if (Key.isDown(Key.A)) {
-    // move left
-    zMove += -1;
-  }
-  if (Key.isDown(Key.D)) {
-    // move right
-    zMove += 1;
-  }
-  if (Key.isDown(Key.W)) {
-    // move front
-    xMove += 1;
-  }
-  if (Key.isDown(Key.S)) {
-    // move back
-    xMove += -1;
-  }
-  if (Key.isDown(Key.SPACE)) {
+
     if (!jumping) {
       jumping = true;
       ySpeed = 40;
     }
-  }
   var angle = 0;
   if (xMove !== 0 || yMove !== 0 || zMove !== 0) {
     if (xMove == 1) {
@@ -313,12 +300,12 @@ function playerPaddleMovement(time) {
       }
     }
     if (angle != -1) {
-      direction.rotateAround({
+      heading.rotateAround({
         x: 0,
         y: 0
       }, angle * Math.PI / 180);
-      delta.x = direction.x;
-      delta.z = direction.y;
+      delta.x = heading.x;
+      delta.z = heading.y;
     }
   }
 
@@ -337,9 +324,7 @@ function playerPaddleMovement(time) {
     jumping = false;
     delta.y = 0;
   }
-  paddle1.position.x += delta.x;
-  paddle1.position.y += delta.y;
-  paddle1.position.z += delta.z;
+  //mainCharacter.setPosition({x: delta.x, y: delta.y, z: delta.z});
 
   return delta;
 }
