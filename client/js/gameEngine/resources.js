@@ -1,6 +1,6 @@
 TIERRA.resources = {};
 
-TIERRA.resources.Resource = function(object) {
+TIERRA.resources.Resource = function(object, position) {
   var self = this;
   var model;
   var texture;
@@ -35,8 +35,11 @@ TIERRA.resources.Resource = function(object) {
               segments,
               rings),
             material);
-          receiveShadow = true;
-          castShadow = true;
+          model.receiveShadow = true;
+          model.castShadow = true;
+          model.position.x = position.x;
+          model.position.y = position.y;
+          model.position.z = position.z;
         } catch (err) {
           console.error('Error loading object ' + object + ': ' + err);
           var error = err;
