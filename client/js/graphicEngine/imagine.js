@@ -62,114 +62,11 @@ IMAGINE.init = function() {
   // attach the render-supplied DOM element
   c.appendChild(IMAGINE._renderer.domElement);
 
-  // create the paddle1's material
-  var paddle1Material =
-    new THREE.MeshLambertMaterial({
-      color: 0x1B32C0
-    });
-  // create the paddle2's material
-  var paddle2Material =
-    new THREE.MeshLambertMaterial({
-      color: 0xFF4045
-    });
   // create the ground's material
   var groundMaterial =
-    new THREE.MeshLambertMaterial({
-      color: 0x888888
-    });
-  var obstacleMaterial =
-    new THREE.MeshLambertMaterial({
-      color: 0x00FF00
-    });
-
-
-  // // set up the sphere vars
-  // lower 'segment' and 'ring' values will increase performance
-  var radius = 5,
-    segments = 50,
-    rings = 50;
-
-  // // create the sphere's material
-  var sphereMaterial = new THREE.MeshLambertMaterial({
-    color: 0xD43001
+  new THREE.MeshLambertMaterial({
+    color: 0x888888
   });
-
-  paddle1 = new THREE.Mesh(
-
-    new THREE.SphereGeometry(
-      radius,
-      segments,
-      rings),
-
-    paddle1Material);
-
-  // // add the sphere to the scene
-  IMAGINE._scene.add(paddle1);
-  paddle1.receiveShadow = true;
-  paddle1.castShadow = true;
-
-
-  obstacle1 = new THREE.Mesh(
-
-    new THREE.CubeGeometry(
-      100,
-      100,
-      100,
-      1),
-
-    obstacleMaterial);
-
-  // // add the sphere to the scene
-  IMAGINE._scene.add(obstacle1);
-  obstacle1.position.x = -200;
-  obstacle1.position.y = 0;
-  obstacle1.position.z = -100;
-  obstacle1.receiveShadow = true;
-  obstacle1.castShadow = true;
-
-  obstacle2 = new THREE.Mesh(
-
-    new THREE.CubeGeometry(
-      100,
-      100,
-      100,
-      1),
-
-    obstacleMaterial);
-
-  // // add the sphere to the scene
-  IMAGINE._scene.add(obstacle2);
-  obstacle2.position.x = 200;
-  obstacle2.position.y = 0;
-  obstacle2.position.z = 100;
-  obstacle2.receiveShadow = true;
-  obstacle2.castShadow = true;
-
-  paddle2 = new THREE.Mesh(
-
-    new THREE.SphereGeometry(
-      radius,
-      segments,
-      rings),
-
-    sphereMaterial);
-
-  // // add the sphere to the scene
-  IMAGINE._scene.add(paddle2);
-
-  paddle2.position.x = 0;
-  paddle2.position.y = 0;
-  paddle2.receiveShadow = true;
-  paddle2.castShadow = true;
-
-  // set paddles on each side of the table
-  paddle1.position.x = -500;
-  paddle1.position.y = 0;
-
-  // lift paddles over playing surface
-  paddle2.position.x = 500;
-  paddle2.position.y = 0;
-
 
   // finally we finish by adding a ground plane
   // to show off pretty shadows
@@ -245,4 +142,114 @@ IMAGINE.update = function(deltaMove) {
 
 IMAGINE.render = function() {
   IMAGINE._renderer.render(IMAGINE._scene, IMAGINE._camera);
+};
+
+IMAGINE.addPlayingCharacter = function(position) {
+
+  // create the paddle1's material
+  var paddle1Material =
+    new THREE.MeshLambertMaterial({
+      color: 0xE5C0BA
+    });
+  // create the paddle2's material
+  var paddle2Material =
+    new THREE.MeshLambertMaterial({
+      color: 0x5ECAD0
+    });
+
+
+  // // set up the sphere vars
+  // lower 'segment' and 'ring' values will increase performance
+  var radius = 5,
+    segments = 50,
+    rings = 50;
+
+  // // create the sphere's material
+  var sphereMaterial = new THREE.MeshLambertMaterial({
+    color: 0xD43001
+  });
+
+  paddle1 = new THREE.Mesh(
+
+    new THREE.SphereGeometry(
+      radius,
+      segments,
+      rings),
+
+    paddle1Material);
+
+  // // add the sphere to the scene
+  IMAGINE._scene.add(paddle1);
+  paddle1.receiveShadow = true;
+  paddle1.castShadow = true;
+
+  paddle2 = new THREE.Mesh(
+
+    new THREE.SphereGeometry(
+      radius,
+      segments,
+      rings),
+
+    paddle2Material);
+
+  // // add the sphere to the scene
+  IMAGINE._scene.add(paddle2);
+
+  paddle2.position.x = 0;
+  paddle2.position.y = 0;
+  paddle2.receiveShadow = true;
+  paddle2.castShadow = true;
+
+  // set paddles on each side of the table
+  paddle1.position.x = -500;
+  paddle1.position.y = 0;
+
+  // lift paddles over playing surface
+  paddle2.position.x = 500;
+  paddle2.position.y = 0;
+};
+
+IMAGINE.addNonPlayingCharacter = function() {
+
+  var obstacleMaterial =
+  new THREE.MeshLambertMaterial({
+    color: 0x00FF00
+  });
+
+  obstacle1 = new THREE.Mesh(
+
+    new THREE.CubeGeometry(
+      100,
+      100,
+      100,
+      1),
+
+    obstacleMaterial);
+
+  // // add the sphere to the scene
+  IMAGINE._scene.add(obstacle1);
+  obstacle1.position.x = -200;
+  obstacle1.position.y = 0;
+  obstacle1.position.z = -100;
+  obstacle1.receiveShadow = true;
+  obstacle1.castShadow = true;
+
+  obstacle2 = new THREE.Mesh(
+
+    new THREE.CubeGeometry(
+      100,
+      100,
+      100,
+      1),
+
+    obstacleMaterial);
+
+  // // add the sphere to the scene
+  IMAGINE._scene.add(obstacle2);
+  obstacle2.position.x = 200;
+  obstacle2.position.y = 0;
+  obstacle2.position.z = 100;
+  obstacle2.receiveShadow = true;
+  obstacle2.castShadow = true;
+
 };
