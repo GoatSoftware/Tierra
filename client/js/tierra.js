@@ -11,6 +11,8 @@ function createScene() {
     z: (Math.random() * 1000) - 500
   });
   IMAGINE.setActivePlayer(TIERRA.mainCharacter);
+  IMAGINE.addNonPlayingCharacter();
+  IMAGINE.addPlayingCharacter();
   IMAGINE.updateCameraPosition();
 }
 
