@@ -1,0 +1,10 @@
+{
+  "name": "Tierra",
+  "version": "0.0.1",
+  "description": "Open source MMORPG",
+  "dependencies": {
+    "express": "^4.10.2",
+    "http-server": "^0.8.5",
+    "socket.io": "^1.3.7"
+  }
+}
