@@ -1,7 +1,7 @@
 // var socket = new io.Socket();
 
 // var socket = io();
-var socket = io(TIERRA.__IP_SERVER__+":"+TIERRA.__PORT_SERVER__);
+var socket = io(TIERRA.CONFIG.__IP_SERVER__+":"+TIERRA.CONFIG.__PORT_SERVER__);
 
 // socket.connect(TIERRA.__IP_SERVER__+":"+TIERRA.__PORT_SERVER__);
 
