@@ -73,7 +73,7 @@ io.sockets.on('connection', function(socket) {
   });
 
   //recieve client data
-  socket.on('client_message', function(data) {
+  socket.on('type', function(data) {
     console.log(data);
     // process.stdout.write(data.letter);
   });
