@@ -1,4 +1,4 @@
 TIERRA.CONFIG = {
   __IP_SERVER__: "79.108.134.72",
-  __PORT_SERVER__: "80"
+  __PORT_SERVER__: "5454"
 };
