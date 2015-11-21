@@ -1,0 +1,3 @@
+-Levantar 2 servidores, 1 apache para servir los ficheros cliente y
+	un node para responder a las peticiones de juego... 80 para el
+	apache, (login) 5454 para el node (server)
