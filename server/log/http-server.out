@@ -1,39 +1,13 @@
-nohup: no se tendrá en cuenta la entrada
-[33mStarting up http-server, serving [39m[36mclient/[39m[33m
-Available on:[39m
-[32m  http:127.0.0.1:80[39m
-[32m  http:192.168.1.69:80[39m
-Hit CTRL-C to stop the server
-[Sat, 07 Nov 2015 21:38:56 GMT] "[36mGET[39m [36m/[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/css/style.css[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/three.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/OrbitControls.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/OBJLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/MTLLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/OBJMTLLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/keyboard.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/jquery-2.1.4.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/i18n/es-ES.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:38:57 GMT] "[36mGET[39m [36m/js/tierra.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:07 GMT] "[36mGET[39m [36m/[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:07 GMT] "[36mGET[39m [36m/css/style.css[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:07 GMT] "[36mGET[39m [36m/js/three.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:07 GMT] "[36mGET[39m [36m/js/OrbitControls.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:07 GMT] "[36mGET[39m [36m/js/OBJLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:08 GMT] "[36mGET[39m [36m/js/jquery-2.1.4.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:08 GMT] "[36mGET[39m [36m/js/keyboard.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:08 GMT] "[36mGET[39m [36m/js/MTLLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:08 GMT] "[36mGET[39m [36m/js/OBJMTLLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:08 GMT] "[36mGET[39m [36m/i18n/es-ES.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:08 GMT] "[36mGET[39m [36m/js/tierra.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/css/style.css[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/three.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/OrbitControls.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/OBJLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/MTLLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/OBJMTLLoader.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/jquery-2.1.4.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/i18n/es-ES.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/tierra.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
-[Sat, 07 Nov 2015 21:39:45 GMT] "[36mGET[39m [36m/js/keyboard.js[39m" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
+mensaje
