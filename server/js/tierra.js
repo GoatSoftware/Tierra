@@ -1,18 +1,20 @@
-(function(){
-  var connection = require('core/connection.js');
+(function() {
+  var connection = require('core/Connection.js');
 
-  var tierra = function(sockets) {
+  var Tierra = function(sockets) {
     var self = this;
     var conn = null;
+    var world = null;
     var io = sockets;
 
     constructor();
 
     function constructor() {
-      conn = new connection();
-      conn.setup(io);
+      world = new World();
+      conn = new Connection();
+      conn.setup(io, world);
     }
   };
 
-  module.exports.tierra = tierra();
+  module.exports.Tierra = Tierra();
 }());
