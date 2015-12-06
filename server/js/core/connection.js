@@ -28,5 +28,5 @@
     }
   };
 
-  module.exports.Connection = Connection();
+  module.exports = Connection;
 }());

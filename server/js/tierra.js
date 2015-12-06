@@ -1,6 +1,6 @@
 (function() {
-  var connection = require('./core/connection');
-  var World = require('./gameEngine/world/world');
+  var Connection = require('./core/connection');
+  var World = require('./gameEngine/world/World');
 
   var Tierra = function(sockets) {
     var self = this;
@@ -11,11 +11,11 @@
     constructor();
 
     function constructor() {
-      world = new World();
       conn = new Connection();
+      world = new World();
       conn.setup(io, world);
     }
   };
 
-  module.exports.Tierra = Tierra();
+  module.exports = Tierra;
 }());
