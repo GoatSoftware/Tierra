@@ -10,13 +10,14 @@
     self.removePlayer = removePlayer;
 
     function addPlayer(io) {
-      var retPlayers = [players.length-1];
-      for (var i; i < players.length; i++) {
+      var retPlayers = [];
+      var i;
+      for (i = 0; i < players.length; i++) {
         retPlayers[i] = players[i];
       }
 
       var char = new playingCharacter(io);
-      players.push(char);
+      players[i] = char;
       return retPlayers;
     }
 
