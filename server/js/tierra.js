@@ -1,5 +1,6 @@
 (function() {
-  var connection = require('core/Connection.js');
+  var connection = require('./core/Connection');
+  var wolrd = require('./world/World');
 
   var Tierra = function(sockets) {
     var self = this;
