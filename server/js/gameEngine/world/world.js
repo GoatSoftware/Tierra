@@ -6,6 +6,8 @@
     var conn = null;
     var players = [];
 
+    self.addPlayer = addPlayer;
+
     function addPlayer(io) {
       var char = new playingCharacter(io);
       players.push(char);
