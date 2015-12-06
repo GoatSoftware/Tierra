@@ -13,22 +13,23 @@
         //Preparamos la lista de los jugadores para enviarla
         //Enviamos a todos los que esten alrededor un paquete para que vean a esta nueva conexión
         var players = world.addPlayer(socket);
-        console.log("Player connected IP:" + socket.handshake.address);
+        console.log('[' + socket.handshake.address + ']Player connected');
 
         //send data to client
         socket.emit('welcome_message', {
-          'texto': "Bienvenido a Brown (Emmet (Dr (AKA Doc)))",
+          'texto': "Hey babe, take a walk on the wild side (Lou Reed)",
+          'count': players.length + 1,
           'players': players
         });
 
         //recieve client data
         socket.on('type', function(data) {
-          console.log(data);
+          console.log('[' + socket.handshake.address + ']' + data);
           // process.stdout.write(data.letter);
         });
 
         socket.on('disconnect', function() {
-          console.log('Player disconnected');
+          console.log('[' + socket.handshake.address + ']Player disconnected:');
 
           world.removePlayer(socket);
           // var i = allClients.indexOf(socket);
