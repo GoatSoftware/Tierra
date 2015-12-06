@@ -9,7 +9,7 @@
       // define interactions with client
       io.sockets.on('connection', function(socket) {
         //Actualizamos la lista de jugadores
-        //Preoparamos la lista de los jugadores para enviarla
+        //Preparamos la lista de los jugadores para enviarla
         //Enviamos a todos los que esten alrededor un paquete para que vean a esta nueva conexión
         var players = world.addPlayer(socket);
 
