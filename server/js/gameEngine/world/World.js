@@ -1,5 +1,5 @@
 (function() {
-  var playingCharacter = require('../characters/PlayingCharacter');
+  var playingCharacter = require('../characters/playingCharacter');
 
   var World = function() {
     var self = this;
