@@ -1,5 +1,5 @@
 (function() {
-  var playingCharacter = require('../gameEngine/PlayingCharacter.js');
+  var playingCharacter = require('../characters/PlayingCharacter');
 
   var World = function() {
     var self = this;
