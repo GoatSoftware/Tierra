@@ -13,7 +13,7 @@
         //Preparamos la lista de los jugadores para enviarla
         //Enviamos a todos los que esten alrededor un paquete para que vean a esta nueva conexión
         var players = world.addPlayer(socket);
-        console.log("Player connected");
+        console.log("Player connected IP:" + socket.handshake.address);
 
         //send data to client
         socket.emit('welcome_message', {
