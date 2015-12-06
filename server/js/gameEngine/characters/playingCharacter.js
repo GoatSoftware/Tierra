@@ -4,5 +4,5 @@
     var conn = io;
   };
 
-  module.exports.PlayingCharacter = PlayingCharacter();
+  module.exports = PlayingCharacter;
 }());
