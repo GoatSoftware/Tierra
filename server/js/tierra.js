@@ -1,4 +1,5 @@
 (function() {
+  var CONFIG = require('./config/config');
   var Connection = require('./core/connection');
   var World = require('./gameEngine/world/world');
 

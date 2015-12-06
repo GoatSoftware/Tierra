@@ -7,11 +7,25 @@
     var players = [];
 
     self.addPlayer = addPlayer;
+    self.removePlayer = removePlayer;
 
     function addPlayer(io) {
+      var retPlayers = [players.length-1];
+      for (var i; i < players.length; i++) {
+        retPlayers[i] = players[i];
+      }
+
       var char = new playingCharacter(io);
       players.push(char);
-      return players.slice(players.indexOf(char), 1);
+      return retPlayers;
+    }
+
+    function removePlayer(io) {
+      for (var i = 0; i < players.length; i++) {
+        if (players[i].hasConnection(io)) {
+          players = players.splice(i, 1);
+        }
+      }
     }
   };
 
