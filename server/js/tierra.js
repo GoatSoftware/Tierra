@@ -1,6 +1,6 @@
 (function() {
   var Connection = require('./core/connection');
-  var World = require('./gameEngine/world/World');
+  var World = require('./gameEngine/world/world');
 
   var Tierra = function(sockets) {
     var self = this;
