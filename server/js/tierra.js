@@ -1,6 +1,7 @@
 (function() {
   var CONFIG = require('./config/config');
   var Connection = require('./core/connection');
+  var logger = require('./core/logger');
   var World = require('./gameEngine/world/world');
 
   var Tierra = function(sockets) {
