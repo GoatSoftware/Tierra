@@ -1,4 +1,5 @@
 (function() {
+  var logger = require('./logger');
   //TODO Necesita rework
   var Connection = function() {
     var self = this;
@@ -13,6 +14,7 @@
         //Preparamos la lista de los jugadores para enviarla
         //Enviamos a todos los que esten alrededor un paquete para que vean a esta nueva conexión
         var players = world.addPlayer(socket);
+        logger.log('[' + socket.handshake.address + ']Player connected');
         console.log('[' + socket.handshake.address + ']Player connected');
 
         //send data to client
